@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Laboratorio interactivo para aprender HTML con ejemplos visuales y elementos diversos.">
+  <title>AstroLab HTML</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="hero" id="inicio">
+    <nav class="main-nav">
+      <h1>AstroLab HTML</h1>
+      <ul>
+        <li><a href="#modulos">Módulos</a></li>
+        <li><a href="#bitacora">Bitácora</a></li>
+        <li><a href="#experimentos">Experimentos</a></li>
+        <li><a href="#registro">Registro</a></li>
+      </ul>
+    </nav>
+    <section class="hero-content">
+      <p class="chip">Laboratorio de enseñanza web</p>
+      <h2>Aprende HTML explorando una base espacial</h2>
+      <p>
+        Cada sección de esta página representa una práctica distinta:
+        semántica, tablas, formularios, multimedia, listas y más.
+      </p>
+      <div class="hero-actions">
+        <a href="#modulos" class="btn btn-primary">Iniciar misión</a>
+        <a href="#registro" class="btn btn-outline">Unirse al laboratorio</a>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section id="modulos" class="section">
+      <h3>Módulos de práctica HTML</h3>
+      <p>
+        El laboratorio está organizado en módulos progresivos para que cada estudiante domine la estructura de una
+        página.
+      </p>
+      <div class="cards">
+        <article class="card">
+          <h4>Estructura y texto</h4>
+          <p>Uso de encabezados, párrafos, énfasis y citas.</p>
+          <ul>
+            <li><strong>&lt;h1&gt;...&lt;h6&gt;</strong></li>
+            <li><em>&lt;p&gt;, &lt;strong&gt;, &lt;em&gt;</em></li>
+            <li><q>Buenas prácticas semánticas</q></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h4>Listas y navegación</h4>
+          <p>Creación de menús y agrupación de información.</p>
+          <ol>
+            <li>Listas ordenadas</li>
+            <li>Listas no ordenadas</li>
+            <li>Listas de definiciones</li>
+          </ol>
+        </article>
+        <article class="card">
+          <h4>Formularios y control</h4>
+          <p>Interacción del usuario con campos y validaciones.</p>
+          <dl>
+            <dt>Input</dt>
+            <dd>Texto, email, fecha, rango y color.</dd>
+            <dt>Select</dt>
+            <dd>Selección de opciones y grupos.</dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <section id="bitacora" class="section section-alt">
+      <h3>Bitácora de lanzamientos</h3>
+      <p>Ejemplo de tabla para practicar filas, columnas y etiquetas de datos.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>Plan semanal de sesiones AstroLab</caption>
+          <thead>
+            <tr>
+              <th scope="col">Día</th>
+              <th scope="col">Tema</th>
+              <th scope="col">Nivel</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Lunes</th>
+              <td>Etiquetas base</td>
+              <td>Inicial</td>
+              <td><span class="status ok">Completado</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Miércoles</th>
+              <td>Enlaces e imágenes</td>
+              <td>Inicial</td>
+              <td><span class="status run">En curso</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Viernes</th>
+              <td>Formularios</td>
+              <td>Intermedio</td>
+              <td><span class="status wait">Pendiente</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="experimentos" class="section">
+      <h3>Zona de experimentos</h3>
+      <div class="media-grid">
+        <figure>
+          <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=900&q=80"
+            alt="Nebulosa colorida en el espacio">
+          <figcaption>Imagen de referencia para practicar la etiqueta <code>&lt;img&gt;</code>.</figcaption>
+        </figure>
+        <article class="snippet">
+          <h4>Fragmento HTML de ejemplo</h4>
+          <pre><code>&lt;section&gt;
+  &lt;h2&gt;Misión 01&lt;/h2&gt;
+  &lt;p&gt;Explora etiquetas semánticas.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+          <details>
+            <summary>Consejo del instructor</summary>
+            <p>Usa nombres de clase descriptivos para facilitar estilos y mantenimiento.</p>
+          </details>
+        </article>
+      </div>
+      <article class="video-card">
+        <h4>Video de apoyo: Introducción a HTML</h4>
+        <div class="video-wrap">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/3nYLTiY5skU?si=CATBDGPoatL09-aF"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+        <p>
+          Si el navegador o la red bloquean el embed, ábrelo aquí:
+          <a href="https://youtu.be/3nYLTiY5skU?si=_3TWxNKVAO64OUDi" target="_blank" rel="noopener noreferrer">ver en
+            YouTube</a>.
+        </p>
+      </article>
+      <blockquote>
+        "HTML no se memoriza: se domina construyendo."
+      </blockquote>
+    </section>
+
+    <section id="registro" class="section section-alt">
+      <h3>Registro de astronautas web</h3>
+      <form class="register-form" action="#" method="post">
+        <fieldset>
+          <legend>Datos personales</legend>
+          <label for="nombre">Nombre completo</label>
+          <input id="nombre" name="nombre" type="text" placeholder="Ej: Ana López" required>
+
+          <label for="email">Correo</label>
+          <input id="email" name="email" type="email" placeholder="ana@email.com" required>
+
+          <label for="fecha">Fecha de ingreso</label>
+          <input id="fecha" name="fecha" type="date">
+        </fieldset>
+
+        <fieldset>
+          <legend>Preferencias de aprendizaje</legend>
+          <label for="nivel">Nivel actual</label>
+          <select id="nivel" name="nivel">
+            <option value="principiante">Principiante</option>
+            <option value="intermedio">Intermedio</option>
+            <option value="avanzado">Avanzado</option>
+          </select>
+
+          <p>Formato favorito:</p>
+          <label><input type="radio" name="formato" value="videos" aria-label="Videos"> Videos</label>
+          <label><input type="radio" name="formato" value="retos" aria-label="Retos"> Retos</label>
+          <label><input type="radio" name="formato" value="clases" aria-label="Clases en vivo"> Clases en vivo</label>
+
+          <label for="progreso">Objetivo semanal (horas): <output id="out">6</output></label>
+          <input id="progreso" type="range" min="1" max="20" value="6" oninput="out.value=this.value">
+
+          <label><input type="checkbox" name="news" checked aria-label="Quiero recibir novedades del laboratorio">
+            Quiero recibir novedades del laboratorio</label>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary">Enviar registro</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p><small>AstroLab HTML · Laboratorio educativo · 2026</small></p>
+    <p><a href="#inicio">Volver arriba</a></p>
+  </footer>
+</body>
+
+</html>
