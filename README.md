@@ -1,7 +1,7 @@
 # AstroLab HTML
 
-Laboratorio visual para practicar HTML y CSS con una temática espacial.
-Incluye secciones semánticas, tablas, formularios, multimedia y un `iframe` de YouTube.
+Laboratorio visual para practicar HTML, CSS y JavaScript con una temática espacial.
+Incluye secciones semánticas, tablas, formularios, multimedia y ahora una academia interactiva.
 
 ## Objetivo
 
@@ -12,11 +12,22 @@ Este proyecto está pensado para clases de introducción a desarrollo web, donde
 - Tablas (`table`, `thead`, `tbody`, `caption`)
 - Formularios (`form`, `fieldset`, `input`, `select`, `output`)
 - Contenido multimedia (`img`, `iframe`)
+- Interacción didáctica con JavaScript (`iframe srcdoc`, validación y evaluación)
+
+## Novedades didácticas (Academia interactiva)
+
+- Editor en línea con pestañas para HTML, CSS y JS.
+- Vista previa en tiempo real dentro de un `iframe`.
+- Botón de reinicio para volver a una plantilla base.
+- Checklist automática para validar criterios HTML esenciales.
+- Mini quiz de repaso con calificación instantánea.
+- Barra de progreso que combina resultados de checklist + quiz.
 
 ## Estructura del proyecto
 
 - `index.html`: contenido y estructura del laboratorio
-- `styles.css`: diseño visual, paleta, tipografía y responsive layout
+- `styles.css`: diseño visual, paleta, tipografía, responsive y paneles interactivos
+- `main.js`: lógica del editor en línea, evaluación y panel de progreso
 - `README.md`: documentación del proyecto
 
 ## Cómo ejecutar
@@ -46,6 +57,6 @@ En ese caso, usa el enlace alternativo en la página para abrir el video directa
 
 ## Sugerencias para clase
 
-- Pide a estudiantes modificar textos, colores y tipografías.
-- Agrega nuevas tarjetas de módulos para practicar más etiquetas.
-- Crea una segunda tabla y valida el formulario con JavaScript como siguiente ejercicio.
+- Pide a estudiantes resolver la checklist antes de abrir el quiz.
+- Asigna retos de modificación sobre la plantilla base del editor.
+- Usa el puntaje de progreso como indicador de práctica semanal.

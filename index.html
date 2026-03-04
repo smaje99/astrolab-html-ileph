@@ -18,6 +18,7 @@
         <li><a href="#modulos">Módulos</a></li>
         <li><a href="#bitacora">Bitácora</a></li>
         <li><a href="#experimentos">Experimentos</a></li>
+        <li><a href="#academia">Academia</a></li>
         <li><a href="#registro">Registro</a></li>
       </ul>
     </nav>
@@ -30,7 +31,7 @@
       </p>
       <div class="hero-actions">
         <a href="#modulos" class="btn btn-primary">Iniciar misión</a>
-        <a href="#registro" class="btn btn-outline">Unirse al laboratorio</a>
+        <a href="#academia" class="btn btn-outline">Ir al editor interactivo</a>
       </div>
     </section>
   </header>
@@ -152,6 +153,101 @@
       </blockquote>
     </section>
 
+    <section id="academia" class="section section-alt">
+      <h3>Academia interactiva</h3>
+      <p>Programa tus prácticas como si fueras control de misión: escribe, ejecuta, valida y mide tu progreso.</p>
+
+      <div class="academy-grid">
+        <article class="panel">
+          <div class="panel-head">
+            <h4>Editor en línea</h4>
+            <div class="editor-actions">
+              <button class="btn btn-ghost" id="run-code" type="button">Ejecutar</button>
+              <button class="btn btn-ghost" id="reset-code" type="button">Reiniciar</button>
+            </div>
+          </div>
+          <p class="muted">Puedes tocar HTML, CSS y JS. La salida se actualiza en la vista previa.</p>
+
+          <div class="editor-tabs" role="tablist" aria-label="Paneles de código">
+            <button class="tab-btn active" type="button" data-tab="html" role="tab" aria-selected="true">HTML</button>
+            <button class="tab-btn" type="button" data-tab="css" role="tab" aria-selected="false">CSS</button>
+            <button class="tab-btn" type="button" data-tab="js" role="tab" aria-selected="false">JS</button>
+          </div>
+
+          <div class="editor-stack">
+            <label class="sr-only" for="html-editor">Editor HTML</label>
+            <textarea id="html-editor" class="code-editor" data-panel="html" spellcheck="false"></textarea>
+
+            <label class="sr-only" for="css-editor">Editor CSS</label>
+            <textarea id="css-editor" class="code-editor hidden" data-panel="css" spellcheck="false"></textarea>
+
+            <label class="sr-only" for="js-editor">Editor JS</label>
+            <textarea id="js-editor" class="code-editor hidden" data-panel="js" spellcheck="false"></textarea>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h4>Vista previa de misión</h4>
+          <iframe id="preview" title="Vista previa del código del estudiante"></iframe>
+          <p class="muted" id="live-status" aria-live="polite">Listo para ejecutar.</p>
+        </article>
+      </div>
+
+      <div class="academy-grid two-columns">
+        <article class="panel">
+          <h4>Checklist automática</h4>
+          <p class="muted">Incluye estas piezas en tu HTML y pulsa <strong>Evaluar misión</strong>.</p>
+          <ul class="checklist" id="challenge-list">
+            <li data-rule="title">Agregar un encabezado con <code>&lt;h1&gt;</code> o <code>&lt;h2&gt;</code>.</li>
+            <li data-rule="paragraph">Incluir al menos un párrafo <code>&lt;p&gt;</code>.</li>
+            <li data-rule="link">Añadir un enlace con <code>&lt;a href="..."&gt;</code>.</li>
+            <li data-rule="image">Agregar una imagen con atributo <code>alt</code>.</li>
+            <li data-rule="list">Incluir una lista <code>&lt;ul&gt;</code> o <code>&lt;ol&gt;</code>.</li>
+          </ul>
+          <button class="btn btn-primary" id="validate-challenge" type="button">Evaluar misión</button>
+          <p class="muted" id="challenge-result" aria-live="polite">Sin evaluar todavía.</p>
+        </article>
+
+        <article class="panel">
+          <h4>Mini quiz de repaso</h4>
+          <form id="quiz-form" class="quiz-form">
+            <fieldset>
+              <legend>1) ¿Qué etiqueta define el título más importante de la página?</legend>
+              <label><input type="radio" name="q1" value="h1" aria-label="Etiqueta de encabezado H1"> &lt;h1&gt;</label>
+              <label><input type="radio" name="q1" value="title" aria-label="Etiqueta de título"> &lt;title&gt;</label>
+              <label><input type="radio" name="q1" value="header" aria-label="Etiqueta de encabezado"> &lt;header&gt;</label>
+            </fieldset>
+
+            <fieldset>
+              <legend>2) ¿Cuál opción describe mejor para qué se usa <code>alt</code> en una imagen?</legend>
+              <label><input type="radio" name="q2" value="seo" aria-label="Opción SEO"> Solo para posicionar en buscadores.</label>
+              <label><input type="radio" name="q2" value="a11y" aria-label="Opción accesibilidad"> Texto alternativo para accesibilidad.</label>
+              <label><input type="radio" name="q2" value="size" aria-label="Opción tamaño"> Definir tamaño en píxeles.</label>
+            </fieldset>
+
+            <fieldset>
+              <legend>3) ¿Qué etiqueta agrupa campos relacionados en formularios?</legend>
+              <label><input type="radio" name="q3" value="section" aria-label="Opción sección"> &lt;section&gt;</label>
+              <label><input type="radio" name="q3" value="fieldset" aria-label="Opción fieldset"> &lt;fieldset&gt;</label>
+              <label><input type="radio" name="q3" value="group" aria-label="Opción group"> &lt;group&gt;</label>
+            </fieldset>
+
+            <button class="btn btn-primary" type="submit">Calificar quiz</button>
+          </form>
+          <p class="muted" id="quiz-result" aria-live="polite">Completa el quiz para ver tu puntaje.</p>
+        </article>
+      </div>
+
+      <article class="panel progress-panel">
+        <h4>Panel de progreso</h4>
+        <p class="muted">Tu avance combina checklist + quiz para dar una métrica clara de aprendizaje.</p>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-bar" id="learning-bar" style="width: 0%;"></div>
+        </div>
+        <p class="score" id="learning-score">0%</p>
+      </article>
+    </section>
+
     <section id="registro" class="section section-alt">
       <h3>Registro de astronautas web</h3>
       <form class="register-form" action="#" method="post">
@@ -197,6 +293,8 @@
     <p><small>AstroLab HTML · Laboratorio educativo · 2026</small></p>
     <p><a href="#inicio">Volver arriba</a></p>
   </footer>
+
+  <script src="main.js"></script>
 </body>
 
 </html>
