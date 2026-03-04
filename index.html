@@ -258,6 +258,26 @@
         </article>
       </div>
 
+      <article class="panel beginner-panel">
+        <h4>Constructor guiado para principiantes</h4>
+        <p class="muted">Completa una misión por vez en el editor HTML. Cuando termines un paso, se desbloquea el siguiente.</p>
+        <ol class="mission-steps" id="mission-steps">
+          <li data-step="0"><strong>Paso 1:</strong> agrega un título con <code>&lt;h1&gt;</code>.</li>
+          <li data-step="1"><strong>Paso 2:</strong> agrega un párrafo <code>&lt;p&gt;</code>.</li>
+          <li data-step="2"><strong>Paso 3:</strong> agrega un enlace <code>&lt;a href=\"...\"&gt;</code>.</li>
+          <li data-step="3"><strong>Paso 4:</strong> agrega una imagen con <code>alt</code>.</li>
+        </ol>
+        <p class="mission-hint" id="mission-hint" aria-live="polite">
+          Pista: escribe un <code>&lt;h1&gt;</code> simple como título de tu misión.
+        </p>
+        <p class="muted" id="mission-status" aria-live="polite">Estado: listo para iniciar.</p>
+        <div class="mission-actions">
+          <button class="btn btn-primary" id="mission-check" type="button">Verificar paso</button>
+          <button class="btn btn-ghost" id="mission-example" type="button">Mostrar ejemplo</button>
+          <button class="btn btn-outline" id="mission-reset" type="button">Comenzar desde cero</button>
+        </div>
+      </article>
+
       <div class="academy-grid two-columns">
         <article class="panel">
           <h4>Checklist automática</h4>

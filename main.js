@@ -63,6 +63,12 @@ const quizForm = document.querySelector("#quiz-form");
 const quizResult = document.querySelector("#quiz-result");
 const learningBar = document.querySelector("#learning-bar");
 const learningScore = document.querySelector("#learning-score");
+const missionStepItems = document.querySelectorAll("#mission-steps li");
+const missionHint = document.querySelector("#mission-hint");
+const missionStatus = document.querySelector("#mission-status");
+const missionCheckBtn = document.querySelector("#mission-check");
+const missionExampleBtn = document.querySelector("#mission-example");
+const missionResetBtn = document.querySelector("#mission-reset");
 const moduleDialog = document.querySelector("#module-dialog");
 const moduleButtons = document.querySelectorAll(".detail-trigger");
 const dialogTitle = document.querySelector("#dialog-title");
@@ -134,6 +140,33 @@ const moduleCatalog = {
     ],
   },
 };
+
+const beginnerMission = [
+  {
+    label: "Paso 1",
+    regex: /<h1[^>]*>[\s\S]*?<\/h1>/i,
+    hint: "Agrega un título principal, por ejemplo: <h1>Mi primera página</h1>.",
+    example: "<h1>Mi primera página</h1>",
+  },
+  {
+    label: "Paso 2",
+    regex: /<p[^>]*>[\s\S]*?<\/p>/i,
+    hint: "Añade un párrafo corto debajo del título para explicar de qué trata tu página.",
+    example: "<p>Estoy practicando HTML paso a paso.</p>",
+  },
+  {
+    label: "Paso 3",
+    regex: /<a\s+[^>]*href\s*=\s*["'][^"']+["'][^>]*>[\s\S]*?<\/a>/i,
+    hint: "Incluye un enlace con href. Ejemplo: <a href=\"https://example.com\">Visitar</a>.",
+    example: "<a href=\"https://developer.mozilla.org/es/docs/Web/HTML\" target=\"_blank\" rel=\"noopener noreferrer\">Referencia HTML</a>",
+  },
+  {
+    label: "Paso 4",
+    regex: /<img\s+[^>]*alt\s*=\s*["'][^"']+["'][^>]*>/i,
+    hint: "Agrega una imagen y describe su contenido en alt.",
+    example: "<img src=\"https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?auto=format&fit=crop&w=600&q=80\" alt=\"Planeta visto desde el espacio\">",
+  },
+];
 
 function setDefaults() {
   htmlEditor.value = defaults.html;
@@ -239,6 +272,78 @@ function updateProgress() {
   learningScore.textContent = `${average}%`;
 }
 
+function evaluateBeginnerMission(announce = false) {
+  if (!missionStepItems.length || !missionHint || !missionStatus) {
+    return { currentStep: 0, completedCount: 0 };
+  }
+
+  const html = htmlEditor.value;
+  const completed = beginnerMission.map((step) => step.regex.test(html));
+  const completedCount = completed.filter(Boolean).length;
+
+  let currentStep = completed.findIndex((done) => !done);
+  if (currentStep === -1) {
+    currentStep = beginnerMission.length;
+  }
+
+  missionStepItems.forEach((item, index) => {
+    item.classList.remove("done", "current", "locked");
+
+    if (index < currentStep) {
+      item.classList.add("done");
+      return;
+    }
+
+    if (index === currentStep) {
+      item.classList.add("current");
+      return;
+    }
+
+    item.classList.add("locked");
+  });
+
+  if (currentStep < beginnerMission.length) {
+    missionHint.innerHTML = `Pista activa: ${beginnerMission[currentStep].hint}`;
+    if (announce) {
+      missionStatus.textContent = `Estado: completaste ${completedCount}/${beginnerMission.length}. Ahora sigue con ${beginnerMission[currentStep].label}.`;
+    }
+  } else {
+    missionHint.textContent = "Misión completa: ya dominas la estructura base de una página HTML.";
+    if (announce) {
+      missionStatus.textContent = "Estado: misión completada. Excelente trabajo.";
+    }
+  }
+
+  return { currentStep, completedCount };
+}
+
+function insertBeginnerExample() {
+  const { currentStep } = evaluateBeginnerMission(false);
+  if (currentStep >= beginnerMission.length) {
+    missionStatus.textContent = "Estado: ya completaste todos los pasos.";
+    return;
+  }
+
+  const step = beginnerMission[currentStep];
+  if (step.regex.test(htmlEditor.value)) {
+    missionStatus.textContent = `Estado: ${step.label} ya está completo.`;
+    return;
+  }
+
+  htmlEditor.value = `${htmlEditor.value}\n${step.example}`.trim();
+  missionStatus.textContent = `Estado: se insertó un ejemplo para ${step.label}.`;
+  runPreview();
+  evaluateBeginnerMission(false);
+}
+
+function resetBeginnerMission() {
+  htmlEditor.value = `<section>\n  <!-- Escribe aquí tu misión -->\n</section>`;
+  switchTab("html");
+  runPreview();
+  missionStatus.textContent = "Estado: editor reiniciado para comenzar desde cero.";
+  evaluateBeginnerMission(false);
+}
+
 function closeModal(dialog, returnValue = "dismiss") {
   if (!dialog?.open) {
     return;
@@ -270,6 +375,7 @@ resetCodeBtn.addEventListener("click", () => {
   setDefaults();
   runPreview();
   liveStatus.textContent = "Editor reiniciado con la plantilla base.";
+  evaluateBeginnerMission(false);
 });
 
 for (const button of tabButtons) {
@@ -278,6 +384,10 @@ for (const button of tabButtons) {
 
 validateBtn.addEventListener("click", evaluateChecklist);
 quizForm.addEventListener("submit", evaluateQuiz);
+missionCheckBtn?.addEventListener("click", () => evaluateBeginnerMission(true));
+missionExampleBtn?.addEventListener("click", insertBeginnerExample);
+missionResetBtn?.addEventListener("click", resetBeginnerMission);
+htmlEditor?.addEventListener("input", () => evaluateBeginnerMission(false));
 
 for (const trigger of moduleButtons) {
   trigger.addEventListener("click", () => {
@@ -306,3 +416,4 @@ dialogCloseIcon?.addEventListener("click", () => closeModal(moduleDialog, "icon"
 setDefaults();
 switchTab("html");
 runPreview();
+evaluateBeginnerMission(false);

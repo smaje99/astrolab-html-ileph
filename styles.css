@@ -659,6 +659,59 @@ footer {
   margin-top: 1rem;
 }
 
+.beginner-panel {
+  margin-top: 1rem;
+}
+
+.mission-steps {
+  list-style: none;
+  margin: 0.7rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.mission-steps li {
+  border: 1px solid #2a5d7d;
+  border-radius: 0.65rem;
+  padding: 0.65rem 0.75rem;
+  background: #0b3048;
+  color: #cce2f2;
+}
+
+.mission-steps li.done {
+  border-color: #2f8f7c;
+  background: #123f4a;
+  color: #bdf7e8;
+}
+
+.mission-steps li.current {
+  border-color: #4f8dc0;
+  background: #163a58;
+  color: #e7f3ff;
+  box-shadow: inset 0 0 0 1px rgb(125 182 232 / 30%);
+}
+
+.mission-steps li.locked {
+  opacity: 0.6;
+}
+
+.mission-hint {
+  margin: 0.85rem 0 0;
+  border: 1px dashed #4f7d9b;
+  border-radius: 0.65rem;
+  padding: 0.7rem 0.8rem;
+  background: rgb(11 44 65 / 60%);
+  color: #c8e3f7;
+}
+
+.mission-actions {
+  margin-top: 0.9rem;
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
 .progress-track {
   width: 100%;
   height: 16px;
