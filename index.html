@@ -80,6 +80,7 @@
         <article class="hover-card" tabindex="0">
           <h5>Estructura base</h5>
           <p>Bloques principales</p>
+          <button class="detail-trigger" type="button" data-module="estructura">Ver guía completa</button>
           <div class="hover-detail">
             <h6>¿Qué practicar?</h6>
             <p>Usa <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code> y <code>&lt;footer&gt;</code> para separar zonas claras.</p>
@@ -89,6 +90,7 @@
         <article class="hover-card" tabindex="0">
           <h5>Texto semántico</h5>
           <p>Jerarquía de contenido</p>
+          <button class="detail-trigger" type="button" data-module="texto">Ver guía completa</button>
           <div class="hover-detail">
             <h6>¿Qué practicar?</h6>
             <p>Combina títulos <code>h1-h3</code>, párrafos y énfasis para construir lectura guiada.</p>
@@ -98,6 +100,7 @@
         <article class="hover-card" tabindex="0">
           <h5>Enlaces</h5>
           <p>Navegación útil</p>
+          <button class="detail-trigger" type="button" data-module="enlaces">Ver guía completa</button>
           <div class="hover-detail">
             <h6>¿Qué practicar?</h6>
             <p>Incluye enlaces internos con <code>#id</code> y externos con <code>rel=\"noopener\"</code>.</p>
@@ -107,6 +110,7 @@
         <article class="hover-card" tabindex="0">
           <h5>Imágenes</h5>
           <p>Comunicación visual</p>
+          <button class="detail-trigger" type="button" data-module="imagenes">Ver guía completa</button>
           <div class="hover-detail">
             <h6>¿Qué practicar?</h6>
             <p>Agrega <code>alt</code> descriptivo y acompaña con <code>&lt;figcaption&gt;</code> cuando aplique.</p>
@@ -116,6 +120,7 @@
         <article class="hover-card" tabindex="0">
           <h5>Tablas</h5>
           <p>Datos ordenados</p>
+          <button class="detail-trigger" type="button" data-module="tablas">Ver guía completa</button>
           <div class="hover-detail">
             <h6>¿Qué practicar?</h6>
             <p>Define <code>&lt;caption&gt;</code>, encabezados de columna y <code>scope</code> para claridad.</p>
@@ -125,6 +130,7 @@
         <article class="hover-card" tabindex="0">
           <h5>Formularios</h5>
           <p>Captura de datos</p>
+          <button class="detail-trigger" type="button" data-module="formularios">Ver guía completa</button>
           <div class="hover-detail">
             <h6>¿Qué practicar?</h6>
             <p>Relaciona cada campo con su <code>&lt;label&gt;</code> y agrupa con <code>&lt;fieldset&gt;</code>.</p>
@@ -352,6 +358,23 @@
     <p><small>AstroLab HTML · Laboratorio educativo · 2026</small></p>
     <p><a href="#inicio">Volver arriba</a></p>
   </footer>
+
+  <dialog id="module-dialog" class="astro-dialog" aria-labelledby="dialog-title">
+    <article class="dialog-shell">
+      <header class="dialog-header">
+        <p class="chip" id="dialog-kicker">Módulo</p>
+        <button class="dialog-close-icon" id="dialog-close-icon" type="button" aria-label="Cerrar modal">
+          ×
+        </button>
+      </header>
+      <h4 id="dialog-title">Detalle del módulo</h4>
+      <p class="muted" id="dialog-summary"></p>
+      <ul id="dialog-topics" class="dialog-topics"></ul>
+      <div class="dialog-actions">
+        <button id="dialog-close-btn" type="button" class="btn btn-outline">Cerrar</button>
+      </div>
+    </article>
+  </dialog>
 
   <script src="main.js"></script>
 </body>

@@ -63,6 +63,77 @@ const quizForm = document.querySelector("#quiz-form");
 const quizResult = document.querySelector("#quiz-result");
 const learningBar = document.querySelector("#learning-bar");
 const learningScore = document.querySelector("#learning-score");
+const moduleDialog = document.querySelector("#module-dialog");
+const moduleButtons = document.querySelectorAll(".detail-trigger");
+const dialogTitle = document.querySelector("#dialog-title");
+const dialogKicker = document.querySelector("#dialog-kicker");
+const dialogSummary = document.querySelector("#dialog-summary");
+const dialogTopics = document.querySelector("#dialog-topics");
+const dialogCloseBtn = document.querySelector("#dialog-close-btn");
+const dialogCloseIcon = document.querySelector("#dialog-close-icon");
+
+const moduleCatalog = {
+  estructura: {
+    kicker: "Módulo 01",
+    title: "Estructura base del documento",
+    summary: "Ordena tu HTML con semántica para mejorar lectura, mantenimiento y accesibilidad.",
+    topics: [
+      "Comienza con `<!doctype html>` y define `lang=\"es\"`.",
+      "Usa `header`, `main` y `footer` como esqueleto principal.",
+      "Divide bloques con `section` y contenido autónomo con `article`.",
+    ],
+  },
+  texto: {
+    kicker: "Módulo 02",
+    title: "Texto semántico y jerarquía",
+    summary: "Las etiquetas de texto no son visuales solamente: transmiten importancia del contenido.",
+    topics: [
+      "Debe existir un solo `h1` representando el tema central.",
+      "Utiliza `h2` y `h3` para agrupar subtemas de forma lógica.",
+      "Usa `strong`, `em`, `blockquote` y `q` cuando el sentido lo requiera.",
+    ],
+  },
+  enlaces: {
+    kicker: "Módulo 03",
+    title: "Navegación con enlaces claros",
+    summary: "Un enlace bien escrito mejora la experiencia y evita ambigüedad en la navegación.",
+    topics: [
+      "Texto del enlace debe describir destino, no solo decir 'click aquí'.",
+      "Para enlaces externos en nueva pestaña, usa `target=\"_blank\"` y `rel=\"noopener noreferrer\"`.",
+      "Usa anclas internas (`#id`) para guiar al usuario por la página.",
+    ],
+  },
+  imagenes: {
+    kicker: "Módulo 04",
+    title: "Imágenes con contexto y accesibilidad",
+    summary: "Toda imagen relevante necesita contexto para usuarios y tecnologías asistivas.",
+    topics: [
+      "Incluye atributo `alt` útil y específico en cada `img`.",
+      "Evita repetir en `alt` lo que ya está justo al lado en texto.",
+      "Usa `figure` + `figcaption` para ilustraciones con explicación.",
+    ],
+  },
+  tablas: {
+    kicker: "Módulo 05",
+    title: "Tablas para datos, no maquetación",
+    summary: "Las tablas deben expresar relaciones entre columnas y filas de forma semántica.",
+    topics: [
+      "Declara `caption` para contexto rápido de los datos.",
+      "Separa `thead` y `tbody` para estructura clara.",
+      "Usa `scope=\"col\"` y `scope=\"row\"` en los encabezados.",
+    ],
+  },
+  formularios: {
+    kicker: "Módulo 06",
+    title: "Formularios usables",
+    summary: "Un formulario claro reduce errores y facilita que el usuario complete la tarea.",
+    topics: [
+      "Asocia cada input con su `label` usando `for` e `id`.",
+      "Agrupa campos relacionados en `fieldset` con `legend` descriptivo.",
+      "Aprovecha tipos (`email`, `date`, `range`) para validación nativa.",
+    ],
+  },
+};
 
 function setDefaults() {
   htmlEditor.value = defaults.html;
@@ -168,6 +239,31 @@ function updateProgress() {
   learningScore.textContent = `${average}%`;
 }
 
+function closeModal(dialog, returnValue = "dismiss") {
+  if (!dialog?.open) {
+    return;
+  }
+
+  if (typeof dialog.requestClose === "function") {
+    dialog.requestClose(returnValue);
+  } else {
+    dialog.close(returnValue);
+  }
+}
+
+function openModuleDialog(moduleKey) {
+  const moduleData = moduleCatalog[moduleKey];
+  if (!moduleData || !moduleDialog || typeof moduleDialog.showModal !== "function") {
+    return;
+  }
+
+  dialogKicker.textContent = moduleData.kicker;
+  dialogTitle.textContent = moduleData.title;
+  dialogSummary.textContent = moduleData.summary;
+  dialogTopics.innerHTML = moduleData.topics.map((topic) => `<li>${topic}</li>`).join("");
+  moduleDialog.showModal();
+}
+
 runCodeBtn.addEventListener("click", runPreview);
 
 resetCodeBtn.addEventListener("click", () => {
@@ -182,6 +278,30 @@ for (const button of tabButtons) {
 
 validateBtn.addEventListener("click", evaluateChecklist);
 quizForm.addEventListener("submit", evaluateQuiz);
+
+for (const trigger of moduleButtons) {
+  trigger.addEventListener("click", () => {
+    openModuleDialog(trigger.dataset.module);
+  });
+}
+
+if (moduleDialog) {
+  moduleDialog.addEventListener("click", (event) => {
+    const dialogRect = moduleDialog.getBoundingClientRect();
+    const clickedOutside =
+      event.clientX < dialogRect.left ||
+      event.clientX > dialogRect.right ||
+      event.clientY < dialogRect.top ||
+      event.clientY > dialogRect.bottom;
+
+    if (clickedOutside) {
+      closeModal(moduleDialog, "backdrop");
+    }
+  });
+}
+
+dialogCloseBtn?.addEventListener("click", () => closeModal(moduleDialog, "button"));
+dialogCloseIcon?.addEventListener("click", () => closeModal(moduleDialog, "icon"));
 
 setDefaults();
 switchTab("html");
